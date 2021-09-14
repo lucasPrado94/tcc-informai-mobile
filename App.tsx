@@ -1,11 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import { Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold } from '@expo-google-fonts/nunito';
+
+import markerIcon from './src/images/marker-icon.png';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -29,7 +30,13 @@ export default function App() {
           latitudeDelta: 0.008,
           longitudeDelta: 0.008,
         }}
-      />
+      >
+        <Marker icon={markerIcon}
+          coordinate={{
+            latitude: -21.3700896,
+            longitude: -46.523845,
+          }} />
+      </MapView>
 
       <View style={styles.footer}>
         <Text style={styles.footerText}>0 problemas encontrados</Text>
