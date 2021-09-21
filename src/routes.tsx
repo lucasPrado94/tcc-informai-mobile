@@ -7,7 +7,8 @@ const { Navigator, Screen } = createNativeStackNavigator();
 
 import OccurrencesMap from "./pages/OccurrencesMap";
 import OccurrenceDetails from "./pages/OccurrenceDetails";
-
+import SelectMapPosition from "./pages/CreateOccurrence/SelectMapPosition";
+import OccurrenceData from "./pages/CreateOccurrence/OccurrenceData";
 
 export default function Routes() {
     return (
@@ -21,6 +22,16 @@ export default function Routes() {
                 <Screen
                     name="OccurrenceDetails"
                     component={OccurrenceDetails}
+                />
+
+                <Screen
+                    name="SelectMapPosition"
+                    component={SelectMapPosition}
+                />
+
+                <Screen
+                    name="OccurrenceData"
+                    component={OccurrenceData}
                 />
             </Navigator>
         </NavigationContainer>
