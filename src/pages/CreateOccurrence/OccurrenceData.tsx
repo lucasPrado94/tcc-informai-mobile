@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons';
 export default function OccurrenceData() {
     return (
         <ScrollView style={styles.container} contentContainerStyle={{ padding: 24 }}>
-            <Text style={styles.title}>Dados da Ocorrência</Text>
+            <Text style={styles.title}>Dados da ocorrência</Text>
 
             <Text style={styles.label}>Nome</Text>
             <Text style={styles.labelSmall}>Quem está abrindo a ocorrência? Não obrigatório.</Text>
@@ -41,8 +41,8 @@ export default function OccurrenceData() {
             </View>
 
             <Text style={styles.label}>Fotos</Text>
-            <Text style={styles.labelSmall}>Adicione fotos da ocorrência para
-                que a administração possa saber a situação em que se encontra o problema.</Text>
+            <Text style={styles.labelSmall}>Adicione fotos do problema para
+                que a administração possa saber a situação em que se encontra.</Text>
             <TouchableOpacity style={styles.imagesInput} onPress={() => { }}>
                 <Feather name="plus" size={24} color="#009E86" />
             </TouchableOpacity>
