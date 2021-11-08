@@ -6,10 +6,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const { Navigator, Screen } = createNativeStackNavigator();
 
 import { OccurrencesMap } from "./screens/OccurrencesMap";
-import OccurrenceDetails from "./pages/OccurrenceDetails";
+import { OccurrenceDetails } from "./screens/OccurrenceDetails";
 import { SelectMapPosition } from "./screens/SelectMapPosition";
-import OccurrenceData from "./pages/CreateOccurrence/OccurrenceData";
-import { MapPositionProvider } from "./components/context/mapPositionContext";
+import { OccurrenceData } from "./screens/OccurrenceData";
 
 export default function Routes() {
     return (
