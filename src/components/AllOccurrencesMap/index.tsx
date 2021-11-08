@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
@@ -23,7 +23,7 @@ export function AllOccurrencesMap() {
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
-                console.log('Você precisa liberar a localização do seu aparelho');
+                Alert.alert('Atenção', 'Esse aplicativo depende da permissão de acesso à localização do aparelho para continuar. Por favor, libere a permissão nas configurações do dispositivo.');
                 return;
             }
             let location = await Location.getCurrentPositionAsync({});
