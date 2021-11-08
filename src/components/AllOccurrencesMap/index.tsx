@@ -36,7 +36,7 @@ export function AllOccurrencesMap() {
 
     return (
         <View style={styles.container}>
-            {(currentLocation.latitude != 0 && currentLocation.longitude != 0) &&
+            {(currentLocation.latitude !== 0 && currentLocation.longitude !== 0) &&
                 (
                     <MapView
                         style={styles.map}
