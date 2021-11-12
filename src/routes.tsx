@@ -30,7 +30,7 @@ export default function Routes() {
                     component={SelectMapPosition}
                     options={{
                         headerShown: true,
-                        header: () => <Header title="Selecione a localização do problema" />
+                        header: () => <Header title="Selecione o local no mapa" />
                     }}
                 />
 

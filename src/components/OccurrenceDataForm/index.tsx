@@ -3,10 +3,15 @@ import React from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { Feather } from '@expo/vector-icons';
+import { Coordinate } from '../../types/coordinate';
 
 import { styles } from './styles';
 
-export function OccurrenceDataForm() {
+type Params = {
+  position: Coordinate,
+}
+export function OccurrenceDataForm({ position }: Params) {
+  console.log(position);
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Nome</Text>
