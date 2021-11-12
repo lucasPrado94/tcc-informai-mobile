@@ -24,9 +24,7 @@ export function SelectMapPosition() {
       <SelectPositionMap position={position} handleSelectMapPosition={handleSelectedPosition} />
 
       {position.latitude !== 0 && (
-        <ToOccurrenceDataButton
-
-        />
+        <ToOccurrenceDataButton position={position}/>
       )}
     </View>
   );

@@ -5,20 +5,10 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
 
-    title: {
-        color: '#009E86',
-        fontSize: 32,
-        fontFamily: 'Nunito_700Bold',
-        marginBottom: 32,
-        paddingBottom: 24,
-        borderBottomWidth: 0.8,
-        borderBottomColor: '#D3E2E6'
-    },
-
     label: {
         color: '#009E86',
         fontFamily: 'Nunito_600SemiBold',
-        fontSize: 24,
+        fontSize: 18,
         marginBottom: 8,
     },
 

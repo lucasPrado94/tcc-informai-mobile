@@ -23,7 +23,7 @@ export function AllOccurrencesMap() {
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
-                Alert.alert('Atenção', 'Esse aplicativo depende da permissão de acesso à localização do aparelho para continuar. Por favor, libere a permissão nas configurações do dispositivo.');
+                Alert.alert('Atenção', 'Esse aplicativo necessita da permissão de acesso à localização do aparelho. Por favor, libere a permissão nas configurações do dispositivo.');
                 return;
             }
             let location = await Location.getCurrentPositionAsync({});

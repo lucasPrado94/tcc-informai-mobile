@@ -9,8 +9,6 @@ import { styles } from './styles';
 export function OccurrenceDataForm() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Dados da ocorrência</Text>
-
       <Text style={styles.label}>Nome</Text>
       <Text style={styles.labelSmall}>Quem está abrindo a ocorrência? Não obrigatório.</Text>
       <TextInput

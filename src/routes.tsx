@@ -9,6 +9,7 @@ import { OccurrencesMap } from "./screens/OccurrencesMap";
 import { OccurrenceDetails } from "./screens/OccurrenceDetails";
 import { SelectMapPosition } from "./screens/SelectMapPosition";
 import { OccurrenceData } from "./screens/OccurrenceData";
+import { Header } from "./components/Header";
 
 export default function Routes() {
     return (
@@ -27,11 +28,19 @@ export default function Routes() {
                 <Screen
                     name="SelectMapPosition"
                     component={SelectMapPosition}
+                    options={{
+                        headerShown: true,
+                        header: () => <Header title="Selecione a localização do problema" />
+                    }}
                 />
 
                 <Screen
                     name="OccurrenceData"
                     component={OccurrenceData}
+                    options={{
+                        headerShown: true,
+                        header: () => <Header title="Informe os dados" /> 
+                      }}
                 />
             </Navigator>
         </NavigationContainer>

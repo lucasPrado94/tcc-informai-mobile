@@ -4,12 +4,17 @@ import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
+import { Coordinate } from '../../types/coordinate';
 
-export function ToOccurrenceDataButton() {
+type Props = {
+    position: Coordinate
+}
+
+export function ToOccurrenceDataButton({position}: Props) {
     const navigation = useNavigation();
 
     function handleNextStep() {
-        navigation.navigate('OccurrenceData');
+        navigation.navigate('OccurrenceData', {position});
     }
 
     return (
