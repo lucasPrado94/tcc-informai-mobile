@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { ScrollView } from 'react-native';
-import { ConcludeButton } from '../../components/ConcludeButton';
 import { OccurrenceDataForm } from '../../components/OccurrenceDataForm';
 import { Coordinate } from '../../types/coordinate';
 import { useRoute } from '@react-navigation/native';
@@ -19,7 +18,6 @@ export function OccurrenceData() {
     return (
         <ScrollView style={styles.container} contentContainerStyle={{ padding: 24 }}>
             <OccurrenceDataForm position={params.position} />
-            <ConcludeButton />
         </ScrollView>
     );
 }

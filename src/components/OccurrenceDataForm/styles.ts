@@ -53,4 +53,19 @@ export const styles = StyleSheet.create({
         marginBottom: 16,
         textAlignVertical: 'top',
     },
+
+    nextButton: {
+        backgroundColor: '#009E86',
+        borderRadius: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 56,
+        marginTop: 32,
+    },
+
+    nextButtonText: {
+        fontFamily: 'Nunito_800ExtraBold',
+        fontSize: 16,
+        color: '#FFF',
+    }
 });

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { Feather } from '@expo/vector-icons';
 import { Coordinate } from '../../types/coordinate';
+import { RectButton } from 'react-native-gesture-handler';
 
 import { styles } from './styles';
 
@@ -11,19 +12,41 @@ type Params = {
   position: Coordinate,
 }
 export function OccurrenceDataForm({ position }: Params) {
-  console.log(position);
+  const [name, setName] = useState('');
+  const [type, setType] = useState(0);
+  const [obs, setObs] = useState('');
+
+  async function handleCreateOccurrence() {
+    const { latitude, longitude } = position;
+
+    const data = new FormData();
+
+    data.append('name', name);
+    data.append('type', String(type));
+    data.append('obs', obs);
+    data.append('latitude', String(latitude));
+    data.append('longitude', String(longitude));
+
+    console.log(process.env.REACT_APP_BACKEND_BASE_URL);
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Nome</Text>
       <Text style={styles.labelSmall}>Quem está abrindo a ocorrência? Não obrigatório.</Text>
       <TextInput
         style={styles.input}
+        value={name}
+        onChangeText={setName}
       />
 
       <Text style={styles.label}>Tipo do problema</Text>
       <Text style={styles.labelSmall}>Selecione a opção que se trata a ocorrência.</Text>
       <View style={styles.pickerContainer}>
-        <Picker>
+        <Picker
+          selectedValue={String(type)}
+          onValueChange={(typeValue) => setType(+typeValue)}
+        >
           <Picker.Item label="Água e esgoto" value="1" />
           <Picker.Item label="Coleta de lixo e limpeza de vias" value="2" />
           <Picker.Item label="Drenagem de água da chuva" value="3" />
@@ -57,7 +80,12 @@ export function OccurrenceDataForm({ position }: Params) {
       <TextInput
         style={[styles.input, { height: 110 }]}
         multiline
+        value={obs}
+        onChangeText={setObs}
       />
+      <RectButton style={styles.nextButton} onPress={handleCreateOccurrence}>
+        <Text style={styles.nextButtonText}>Concluir</Text>
+      </RectButton>
     </View>
   );
 }
