@@ -26,8 +26,6 @@ export function OccurrenceDataForm({ position }: Params) {
     data.append('obs', obs);
     data.append('latitude', String(latitude));
     data.append('longitude', String(longitude));
-
-    console.log(process.env.REACT_APP_BACKEND_BASE_URL);
   }
 
   return (
