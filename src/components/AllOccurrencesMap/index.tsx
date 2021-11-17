@@ -32,7 +32,7 @@ export function AllOccurrencesMap() {
                 longitude: location.coords.longitude
             });
         })();
-    }, [])
+    }, []);
 
     return (
         <View style={styles.container}>

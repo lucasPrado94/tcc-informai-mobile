@@ -6,7 +6,10 @@ import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
 
-export function OccurrencesMapFooter() {
+type Props = {
+    totalOccurrences: number
+}
+export function OccurrencesMapFooter({ totalOccurrences }: Props) {
     const navigation = useNavigation();
 
     function handleNavigateToCreateOccurrence() {
@@ -15,9 +18,14 @@ export function OccurrencesMapFooter() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.footerText}>1 ocorrências encontradas</Text>
-            <RectButton style={styles.createOccurrenceButton} onPress={handleNavigateToCreateOccurrence}>
-                <Feather name="plus" size={20} color="#FFF"></Feather>
+            <Text style={styles.footerText}>
+                {totalOccurrences} ocorrências encontradas
+            </Text>
+            <RectButton
+                style={styles.createOccurrenceButton}
+                onPress={handleNavigateToCreateOccurrence}
+            >
+                <Feather name="plus" size={20} color="#FFF" />
             </RectButton>
         </View>
     );

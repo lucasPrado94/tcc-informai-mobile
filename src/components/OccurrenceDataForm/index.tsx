@@ -5,8 +5,10 @@ import { Picker } from '@react-native-community/picker';
 import { Feather } from '@expo/vector-icons';
 import { Coordinate } from '../../types/coordinate';
 import { RectButton } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
+import api from '../../services/api';
 
 type Params = {
   position: Coordinate,
@@ -26,6 +28,11 @@ export function OccurrenceDataForm({ position }: Params) {
     data.append('obs', obs);
     data.append('latitude', String(latitude));
     data.append('longitude', String(longitude));
+    
+    await api.post('occurrences/create', data);
+
+    const navigation = useNavigation();
+    navigation.navigate('OccurrencesMap');
   }
 
   return (
