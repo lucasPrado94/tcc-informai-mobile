@@ -23,7 +23,7 @@ export function OccurrencesMap() {
 
     return (
         <View style={styles.container}>
-            <AllOccurrencesMap />
+            <AllOccurrencesMap occurrences={occurrences}/>
             <OccurrencesMapFooter
                 totalOccurrences={occurrences.length}
             />

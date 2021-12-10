@@ -6,8 +6,14 @@ import * as Location from 'expo-location';
 import { styles } from './styles';
 import markerIcon from '../../images/marker-icon.png';
 import { Coordinate } from '../../interfaces/coordinate';
+import { Occurrence } from '../../interfaces/occurrence';
 
-export function AllOccurrencesMap() {
+
+type Props = {
+    occurrences: Occurrence[];
+}
+
+export function AllOccurrencesMap({ occurrences }: Props) {
     const navigation = useNavigation();
 
     function handleNavigateToOccurrenceDetails() {
@@ -48,22 +54,28 @@ export function AllOccurrencesMap() {
                             longitudeDelta: 0.008,
                         }}
                     >
-                        <Marker icon={markerIcon}
-                            calloutAnchor={{
-                                x: 2.7,
-                                y: 0.8,
-                            }}
-                            coordinate={{
-                                latitude: -21.3700896,
-                                longitude: -46.523845,
-                            }}
-                        >
-                            <Callout tooltip onPress={handleNavigateToOccurrenceDetails}>
-                                <View style={styles.calloutContainer}>
-                                    <Text style={styles.calloutText}>Problema</Text>
-                                </View>
-                            </Callout>
-                        </Marker>
+                        {occurrences.map(occurrence => {
+                            return (
+                                <Marker
+                                    key={occurrence.id}
+                                    icon={markerIcon}
+                                    calloutAnchor={{
+                                        x: 2.7,
+                                        y: 0.8,
+                                    }}
+                                    coordinate={{
+                                        latitude: occurrence.latitude,
+                                        longitude: occurrence.longitude,
+                                    }}
+                                >
+                                    <Callout tooltip onPress={() => {}}>
+                                        <View style={styles.calloutContainer}>
+                                            <Text style={styles.calloutText}>{occurrence.type.typeName}</Text>
+                                        </View>
+                                    </Callout>
+                                </Marker>
+                            );
+                        })}
                     </MapView>
                 )
             }
