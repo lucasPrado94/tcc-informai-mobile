@@ -6,17 +6,17 @@ import { styles } from './styles';
 
 import { AllOccurrencesMap } from '../../components/AllOccurrencesMap';
 import { OccurrencesMapFooter } from '../../components/OccurrencesMapFooter';
-import Occurrence from '../../interfaces/occurrence';
+import { Occurrence } from '../../interfaces/occurrence';
 import api from '../../services/api';
 
 export function OccurrencesMap() {
     const [occurrences, setOccurrences] = useState<Occurrence[]>([]);
-
+    
     useFocusEffect(() => {
         (async () => {
             await api.get('occurrences/all').then(response => {
                 setOccurrences(response.data);
-            })
+            });
         })();
 
     });

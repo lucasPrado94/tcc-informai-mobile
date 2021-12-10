@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { Feather } from '@expo/vector-icons';
-import { Coordinate } from '../../types/coordinate';
+import { Coordinate } from '../../interfaces/coordinate';
+import { Type } from '../../interfaces/types';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
 import api from '../../services/api';
 
-type Params = {
+interface Params {
     position: Coordinate,
 }
 
@@ -19,7 +20,16 @@ export function OccurrenceDataForm({ position }: Params) {
     const [name, setName] = useState('');
     const [type, setType] = useState(0);
     const [obs, setObs] = useState('');
+    const [typesDB, setTypesDB] = useState<Type[]>([]);
     const navigation = useNavigation();
+
+    useEffect(() => {
+        (async () => {
+            await api.get('types/all').then(response => {
+                setTypesDB(response.data);
+            });
+        })();
+    }, []);
 
     async function handleCreateOccurrence() {
         if (type == 0) {
@@ -62,24 +72,19 @@ export function OccurrenceDataForm({ position }: Params) {
                     onValueChange={(typeValue) => setType(+typeValue)}
                 >
                     <Picker.Item label="Escolha uma categoria" value="0" />
-                    <Picker.Item label="Água e esgoto" value="1" />
-                    <Picker.Item label="Coleta de lixo e limpeza de vias" value="2" />
-                    <Picker.Item label="Drenagem de água da chuva" value="3" />
-                    <Picker.Item label="Pavimentação" value="4" />
-                    <Picker.Item label="Trânsito e tráfego" value="5" />
-                    <Picker.Item label="Transporte Coletivo" value="6" />
-                    <Picker.Item label="Iluminação pública" value="7" />
-                    <Picker.Item label="Energia elétrica" value="8" />
-                    <Picker.Item label="Serviços telefênicos" value="9" />
-                    <Picker.Item label="Distribuição de gás" value="10" />
-                    <Picker.Item label="Educação e ensino" value="11" />
-                    <Picker.Item label="Saúde e higiene" value="12" />
-                    <Picker.Item label="Assistência social" value="13" />
-                    <Picker.Item label="Mercados, feiras e matadouros" value="14" />
-                    <Picker.Item label="Serviço funerário" value="15" />
-                    <Picker.Item label="Segurança pública" value="16" />
-                    <Picker.Item label="Esportes, lazer, cultura e recreação" value="17" />
-                    <Picker.Item label="Defesa civil" value="18" />
+
+                    {
+                        typesDB.map(typeDB => {
+                            return (
+                                <Picker.Item
+                                    key={typeDB.id}
+                                    label={typeDB.typeName}
+                                    value={String(typeDB.id)}
+                                />
+                            )
+                        })
+                    }
+
                 </Picker>
             </View>
             {/*

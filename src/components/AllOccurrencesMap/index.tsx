@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { styles } from './styles';
 import markerIcon from '../../images/marker-icon.png';
-import { Coordinate } from '../../types/coordinate';
+import { Coordinate } from '../../interfaces/coordinate';
 
 export function AllOccurrencesMap() {
     const navigation = useNavigation();

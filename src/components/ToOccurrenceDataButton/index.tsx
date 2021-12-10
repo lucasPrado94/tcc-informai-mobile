@@ -4,7 +4,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
-import { Coordinate } from '../../types/coordinate';
+import { Coordinate } from '../../interfaces/coordinate';
 
 type Props = {
     position: Coordinate

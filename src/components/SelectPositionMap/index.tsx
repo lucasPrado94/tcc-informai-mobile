@@ -5,7 +5,7 @@ import markerIcon from '../../images/marker-icon.png';
 import * as Location from 'expo-location';
 
 import { styles } from './styles';
-import { Coordinate } from "../../types/coordinate";
+import { Coordinate } from "../../interfaces/coordinate";
 
 
 type Props = {

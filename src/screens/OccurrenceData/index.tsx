@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ScrollView } from 'react-native';
 import { OccurrenceDataForm } from '../../components/OccurrenceDataForm';
-import { Coordinate } from '../../types/coordinate';
+import { Coordinate } from '../../interfaces/coordinate';
 import { useRoute } from '@react-navigation/native';
 
 import { styles } from './styles';
