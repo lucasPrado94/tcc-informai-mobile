@@ -18,7 +18,7 @@ interface Params {
 export function OccurrenceDataForm({ position }: Params) {
 
     const [name, setName] = useState('');
-    const [type, setType] = useState(0);
+    const [typeId, setTypeId] = useState(0);
     const [obs, setObs] = useState('');
     const [typesDB, setTypesDB] = useState<Type[]>([]);
     const navigation = useNavigation();
@@ -32,7 +32,7 @@ export function OccurrenceDataForm({ position }: Params) {
     }, []);
 
     async function handleCreateOccurrence() {
-        if (type == 0) {
+        if (typeId == 0) {
             Alert.alert('Atenção', 'Escolha um tipo para a ocorrência');
         } else {
             const { latitude, longitude } = position;
@@ -40,14 +40,14 @@ export function OccurrenceDataForm({ position }: Params) {
             const data = new FormData();
 
             data.append('name', name);
-            data.append('type', String(type));
+            data.append('typeId', String(typeId));
             data.append('obs', obs);
             data.append('latitude', String(latitude));
             data.append('longitude', String(longitude));
 
             const result = await api.post('occurrences/create', data);
 
-            if (result.status == 200)
+            if (result.status == 201)
                 navigation.navigate('OccurrencesMap');
             else
                 Alert.alert('Erro', 'Não foi possível salvar a ocorrência, tente novamente.')
@@ -68,8 +68,8 @@ export function OccurrenceDataForm({ position }: Params) {
             <Text style={styles.labelSmall}>Selecione a opção que se trata a ocorrência.</Text>
             <View style={styles.pickerContainer}>
                 <Picker
-                    selectedValue={String(type)}
-                    onValueChange={(typeValue) => setType(+typeValue)}
+                    selectedValue={String(typeId)}
+                    onValueChange={(typeValue) => setTypeId(+typeValue)}
                 >
                     <Picker.Item label="Escolha uma categoria" value="0" />
 
