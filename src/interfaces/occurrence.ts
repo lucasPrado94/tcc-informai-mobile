@@ -5,7 +5,7 @@ export interface Occurrence {
     latitude: number,
     longitude: number,
     obs: string,
-    typeId: number,
+    serviceId: number,
     service: {
         serviceName: string
     }
