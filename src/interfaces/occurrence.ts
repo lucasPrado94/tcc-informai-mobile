@@ -6,7 +6,7 @@ export interface Occurrence {
     longitude: number,
     obs: string,
     typeId: number,
-    type: {
-        typeName: string
+    service: {
+        serviceName: string
     }
 }

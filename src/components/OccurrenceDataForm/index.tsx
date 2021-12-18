@@ -4,7 +4,7 @@ import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { Feather } from '@expo/vector-icons';
 import { Coordinate } from '../../interfaces/coordinate';
-import { Type } from '../../interfaces/type';
+import { Service } from '../../interfaces/service';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
@@ -19,29 +19,29 @@ interface Params {
 export function OccurrenceDataForm({ position }: Params) {
 
     const [name, setName] = useState('');
-    const [typeId, setTypeId] = useState(0);
+    const [serviceId, setServiceId] = useState(0);
     const [obs, setObs] = useState('');
-    const [typesDB, setTypesDB] = useState<Type[]>([]);
+    const [servicesDB, setServicesDB] = useState<Service[]>([]);
     const navigation = useNavigation<OccurrencesMapScreenProp>();
 
     useEffect(() => {
         (async () => {
-            await api.get('types/all').then(response => {
-                setTypesDB(response.data);
+            await api.get('services/all').then(response => {
+                setServicesDB(response.data);
             });
         })();
     }, []);
 
     async function handleCreateOccurrence() {
-        if (typeId == 0) {
-            Alert.alert('Atenção', 'Escolha um tipo para a ocorrência');
+        if (serviceId == 0) {
+            Alert.alert('Atenção', 'Escolha um serviço público para cadastrar a ocorrência');
         } else {
             const { latitude, longitude } = position;
 
             const data = new FormData();
 
             data.append('name', name);
-            data.append('typeId', String(typeId));
+            data.append('serviceId', String(serviceId));
             data.append('obs', obs);
             data.append('latitude', String(latitude));
             data.append('longitude', String(longitude));
@@ -65,22 +65,22 @@ export function OccurrenceDataForm({ position }: Params) {
                 onChangeText={setName}
             />
 
-            <Text style={styles.label}>Tipo do problema</Text>
-            <Text style={styles.labelSmall}>Selecione a opção que se trata a ocorrência.</Text>
+            <Text style={styles.label}>Servico público</Text>
+            <Text style={styles.labelSmall}>Selecione o serviço público que está acontecendo o problema.</Text>
             <View style={styles.pickerContainer}>
                 <Picker
-                    selectedValue={String(typeId)}
-                    onValueChange={(typeValue) => setTypeId(+typeValue)}
+                    selectedValue={String(serviceId)}
+                    onValueChange={(serviceValue) => setServiceId(+serviceValue)}
                 >
                     <Picker.Item label="Escolha uma categoria" value="0" />
 
                     {
-                        typesDB.map(typeDB => {
+                        servicesDB.map(serviceDB => {
                             return (
                                 <Picker.Item
-                                    key={typeDB.id}
-                                    label={typeDB.typeName}
-                                    value={String(typeDB.id)}
+                                    key={serviceDB.id}
+                                    label={serviceDB.serviceName}
+                                    value={String(serviceDB.id)}
                                 />
                             )
                         })

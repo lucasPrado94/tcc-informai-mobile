@@ -70,7 +70,7 @@ export function AllOccurrencesMap({ occurrences }: Props) {
                                 >
                                     <Callout tooltip onPress={() => {}}>
                                         <View style={styles.calloutContainer}>
-                                            <Text style={styles.calloutText}>{occurrence.type.typeName}</Text>
+                                            <Text style={styles.calloutText}>{occurrence.service.serviceName}</Text>
                                         </View>
                                     </Callout>
                                 </Marker>
