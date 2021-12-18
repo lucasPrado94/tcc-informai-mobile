@@ -11,7 +11,7 @@ import api from '../../services/api';
 
 export function OccurrencesMap() {
     const [occurrences, setOccurrences] = useState<Occurrence[]>([]);
-
+    
     useFocusEffect(() => {
         (async () => {
             await api.get('occurrences/all').then(response => {

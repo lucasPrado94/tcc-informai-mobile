@@ -5,12 +5,13 @@ import { View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
+import { SelectMapPositionScreenProp } from '../../routes';
 
 type Props = {
     totalOccurrences: number
 }
 export function OccurrencesMapFooter({ totalOccurrences }: Props) {
-    const navigation = useNavigation();
+    const navigation = useNavigation<SelectMapPositionScreenProp>();
 
     function handleNavigateToCreateOccurrence() {
         navigation.navigate('SelectMapPosition');

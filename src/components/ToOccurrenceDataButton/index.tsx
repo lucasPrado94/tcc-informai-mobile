@@ -5,13 +5,14 @@ import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
 import { Coordinate } from '../../interfaces/coordinate';
+import { OccurrenceDataScreenProp } from '../../routes';
 
 type Props = {
     position: Coordinate
 }
 
 export function ToOccurrenceDataButton({position}: Props) {
-    const navigation = useNavigation();
+    const navigation = useNavigation<OccurrenceDataScreenProp>();
 
     function handleNextStep() {
         navigation.navigate('OccurrenceData', {position});

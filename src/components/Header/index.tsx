@@ -4,6 +4,7 @@ import { BorderlessButton } from "react-native-gesture-handler";
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { styles } from './styles';
+import { OccurrencesMapScreenProp } from '../../routes';
 
 type Props = {
     title: string;
@@ -11,7 +12,7 @@ type Props = {
 }
 
 export function Header({ title, showCancel = true }: Props) {
-    const navigation = useNavigation();
+    const navigation = useNavigation<OccurrencesMapScreenProp>();
 
     function handleGoBackToAppHomepage() {
         navigation.navigate('OccurrencesMap');

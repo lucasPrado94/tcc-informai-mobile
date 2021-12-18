@@ -7,14 +7,14 @@ import { styles } from './styles';
 import markerIcon from '../../images/marker-icon.png';
 import { Coordinate } from '../../interfaces/coordinate';
 import { Occurrence } from '../../interfaces/occurrence';
-
+import { OccurrenceDetailsScreenProp } from '../../routes';
 
 type Props = {
     occurrences: Occurrence[];
 }
 
 export function AllOccurrencesMap({ occurrences }: Props) {
-    const navigation = useNavigation();
+    const navigation = useNavigation<OccurrenceDetailsScreenProp>();
 
     function handleNavigateToOccurrenceDetails() {
         navigation.navigate('OccurrenceDetails');

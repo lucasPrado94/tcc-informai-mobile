@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
 import api from '../../services/api';
+import { OccurrencesMapScreenProp } from '../../routes';
 
 interface Params {
     position: Coordinate,
@@ -21,7 +22,7 @@ export function OccurrenceDataForm({ position }: Params) {
     const [typeId, setTypeId] = useState(0);
     const [obs, setObs] = useState('');
     const [typesDB, setTypesDB] = useState<Type[]>([]);
-    const navigation = useNavigation();
+    const navigation = useNavigation<OccurrencesMapScreenProp>();
 
     useEffect(() => {
         (async () => {
