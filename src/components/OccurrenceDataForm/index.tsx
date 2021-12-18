@@ -4,7 +4,7 @@ import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { Feather } from '@expo/vector-icons';
 import { Coordinate } from '../../interfaces/coordinate';
-import { Type } from '../../interfaces/types';
+import { Type } from '../../interfaces/type';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
