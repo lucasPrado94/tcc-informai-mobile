@@ -67,5 +67,37 @@ export const styles = StyleSheet.create({
         fontFamily: 'Nunito_800ExtraBold',
         fontSize: 16,
         color: '#FFF',
-    }
+    },
+
+    uploadedImagesContainer: {
+        flexDirection: 'row',
+        marginBottom: 10,
+    },
+
+    uploadedImage: {
+        width: 64,
+        height: 64,
+        borderRadius: 20,
+        marginRight: 8,
+    },
+
+    excludeImage: {
+        marginRight: 10,
+    },
+
+    uploadedImageMenu: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 2,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#009E86',
+        marginRight: 5,
+    },
+
+    uploadedImageText: {
+        fontFamily: 'Nunito_600SemiBold',
+        color: '#0089a5',
+    },
 });

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Image, ScrollView } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { Feather } from '@expo/vector-icons';
 import { Coordinate } from '../../interfaces/coordinate';
 import { Service } from '../../interfaces/service';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+
+import * as ImagePicker from 'expo-image-picker';
 
 import { styles } from './styles';
 import api from '../../services/api';
@@ -23,6 +25,8 @@ export function OccurrenceDataForm({ position }: Params) {
     const [obs, setObs] = useState('');
     const [servicesDB, setServicesDB] = useState<Service[]>([]);
     const navigation = useNavigation<OccurrencesMapScreenProp>();
+    const [images, setImages] = useState<string[]>([]);
+    const [extImage, setExtImage] = useState<string[]>([]);
 
     useEffect(() => {
         (async () => {
@@ -34,7 +38,9 @@ export function OccurrenceDataForm({ position }: Params) {
 
     async function handleCreateOccurrence() {
         if (serviceId == 0) {
-            Alert.alert('Atenção', 'Escolha um serviço público para cadastrar a ocorrência');
+            Alert.alert('Atenção', 'Escolha um serviço público para cadastrar a ocorrência.');
+        } else if (images.length == 0) {
+            Alert.alert('Atenção', 'Adicione pelo menos uma foto para cadastrar a ocorrência.');
         } else {
             const { latitude, longitude } = position;
 
@@ -46,6 +52,14 @@ export function OccurrenceDataForm({ position }: Params) {
             data.append('latitude', String(latitude));
             data.append('longitude', String(longitude));
 
+            images.forEach((image, index) => {
+                data.append('images', {
+                    name: `image_${index}.jpg`,
+                    type: 'image/jpg',
+                    uri: image,
+                } as any)
+            })
+
             const result = await api.post('occurrences/create', data);
 
             if (result.status == 201)
@@ -53,6 +67,40 @@ export function OccurrenceDataForm({ position }: Params) {
             else
                 Alert.alert('Erro', 'Não foi possível salvar a ocorrência, tente novamente.')
         }
+    }
+
+    async function handleSelectImages() {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+            alert('Precisamos de acesso às suas fotos');
+            return;
+        }
+
+        const result = await ImagePicker.launchImageLibraryAsync({
+            allowsEditing: true,
+            quality: 1,
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        });
+
+        if (result.cancelled) {
+            return;
+        }
+
+        const { uri: image } = result;
+        setImages([...images, image]);
+    }
+
+    function handleExcludeImage(imageIndex: number) {
+        const arrayExtImage = extImage.filter((value, index) => {
+            return index !== imageIndex
+        });
+
+        const arrayImages = images.filter((value, index) => {
+            return index !== imageIndex
+        });
+
+        setImages(arrayImages);
+        setExtImage(arrayExtImage);
     }
 
     return (
@@ -88,14 +136,32 @@ export function OccurrenceDataForm({ position }: Params) {
 
                 </Picker>
             </View>
-            {/*
-      <Text style={styles.label}>Fotos</Text>
-      <Text style={styles.labelSmall}>Adicione fotos do problema para
-        que a administração possa saber a situação em que se encontra.</Text>
-      <TouchableOpacity style={styles.imagesInput} onPress={() => { }}>
-        <Feather name="plus" size={24} color="#009E86" />
-      </TouchableOpacity>
-      */}
+
+            <Text style={styles.label}>Fotos</Text>
+            <Text style={styles.labelSmall}>Adicione fotos para
+                que a administração possa saber a situação em que o problema se encontra.
+            </Text>
+            <View style={styles.uploadedImagesContainer}>
+            <ScrollView horizontal>
+                {images.map((image, index) => {
+                    return (
+                        <View
+                            key={index}
+                            style={styles.uploadedImageMenu}
+                        >
+                            <Image
+                                source={{ uri: image }}
+                                style={styles.uploadedImage}
+                            />
+                            <Feather name="x" size={30} color="red" style={styles.excludeImage} onPress={() => handleExcludeImage(index)} />
+                        </View>
+                    )
+                })}
+                </ScrollView>
+            </View>
+            <TouchableOpacity style={styles.imagesInput} onPress={handleSelectImages}>
+                <Feather name="plus" size={24} color="#009E86" />
+            </TouchableOpacity>
 
             <Text style={styles.label}>Observações</Text>
             <Text style={styles.labelSmall}>Deseja adicionar mais alguma informação sobre o problema?</Text>
