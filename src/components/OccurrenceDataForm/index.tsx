@@ -14,11 +14,11 @@ import { styles } from './styles';
 import api from '../../services/api';
 import { OccurrencesMapScreenProp } from '../../routes';
 
-interface Params {
+interface OccurrenceDataFormParams {
     position: Coordinate,
 }
 
-export function OccurrenceDataForm({ position }: Params) {
+export function OccurrenceDataForm({ position }: OccurrenceDataFormParams) {
 
     const [name, setName] = useState('');
     const [serviceId, setServiceId] = useState(0);
@@ -142,21 +142,21 @@ export function OccurrenceDataForm({ position }: Params) {
                 que a administração possa saber a situação em que o problema se encontra.
             </Text>
             <View style={styles.uploadedImagesContainer}>
-            <ScrollView horizontal>
-                {images.map((image, index) => {
-                    return (
-                        <View
-                            key={index}
-                            style={styles.uploadedImageMenu}
-                        >
-                            <Image
-                                source={{ uri: image }}
-                                style={styles.uploadedImage}
-                            />
-                            <Feather name="x" size={30} color="red" style={styles.excludeImage} onPress={() => handleExcludeImage(index)} />
-                        </View>
-                    )
-                })}
+                <ScrollView horizontal>
+                    {images.map((image, index) => {
+                        return (
+                            <View
+                                key={index}
+                                style={styles.uploadedImageMenu}
+                            >
+                                <Image
+                                    source={{ uri: image }}
+                                    style={styles.uploadedImage}
+                                />
+                                <Feather name="x" size={30} color="red" style={styles.excludeImage} onPress={() => handleExcludeImage(index)} />
+                            </View>
+                        )
+                    })}
                 </ScrollView>
             </View>
             <TouchableOpacity style={styles.imagesInput} onPress={handleSelectImages}>

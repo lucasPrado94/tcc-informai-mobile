@@ -1,13 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: getStatusBarHeight(),
-        paddingHorizontal: 24
-    },
-    imagesContainer: {
-        height: 240,
+        paddingBottom: 8,
     },
 });

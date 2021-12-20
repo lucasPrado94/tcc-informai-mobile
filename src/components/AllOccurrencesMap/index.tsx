@@ -9,15 +9,15 @@ import { Coordinate } from '../../interfaces/coordinate';
 import { Occurrence } from '../../interfaces/occurrence';
 import { OccurrenceDetailsScreenProp } from '../../routes';
 
-type Props = {
+type AllOccurrencesMapProps = {
     occurrences: Occurrence[];
 }
 
-export function AllOccurrencesMap({ occurrences }: Props) {
+export function AllOccurrencesMap({ occurrences }: AllOccurrencesMapProps) {
     const navigation = useNavigation<OccurrenceDetailsScreenProp>();
 
-    function handleNavigateToOccurrenceDetails() {
-        navigation.navigate('OccurrenceDetails');
+    function handleNavigateToOccurrenceDetails(id: number) {
+        navigation.navigate('OccurrenceDetails', { id });
     }
 
     const [currentLocation, setCurrentLocation] = useState<Coordinate>({
@@ -68,7 +68,7 @@ export function AllOccurrencesMap({ occurrences }: Props) {
                                         longitude: occurrence.longitude,
                                     }}
                                 >
-                                    <Callout tooltip onPress={() => {}}>
+                                    <Callout tooltip onPress={() => handleNavigateToOccurrenceDetails(occurrence.id as any)}>
                                         <View style={styles.calloutContainer}>
                                             <Text style={styles.calloutText}>{occurrence.service.serviceName}</Text>
                                         </View>

@@ -1,3 +1,5 @@
+import { Image } from './image'
+
 export interface Occurrence {
     id?: number,
     createdAt: string,
@@ -8,5 +10,6 @@ export interface Occurrence {
     serviceId: number,
     service: {
         serviceName: string
-    }
+    },
+    images: Image[]
 }

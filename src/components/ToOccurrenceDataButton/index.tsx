@@ -7,15 +7,15 @@ import { styles } from './styles';
 import { Coordinate } from '../../interfaces/coordinate';
 import { OccurrenceDataScreenProp } from '../../routes';
 
-type Props = {
+type ToOccurrenceDataButtonProps = {
     position: Coordinate
 }
 
-export function ToOccurrenceDataButton({position}: Props) {
+export function ToOccurrenceDataButton({ position }: ToOccurrenceDataButtonProps) {
     const navigation = useNavigation<OccurrenceDataScreenProp>();
 
     function handleNextStep() {
-        navigation.navigate('OccurrenceData', {position});
+        navigation.navigate('OccurrenceData', { position });
     }
 
     return (
