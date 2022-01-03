@@ -7,6 +7,7 @@ import api from '../../services/api';
 import { Occurrence } from '../../interfaces/occurrence';
 import { OccurrenceImages } from '../../components/OccurrenceImages';
 import { OccurrenceInfo } from '../../components/OccurrenceInfo';
+import { OccurrencesStatus } from '../../components/OccurrencesStatus';
 
 interface OccurrenceDetailsRouteParams {
     id: number;
@@ -42,6 +43,7 @@ export function OccurrenceDetails() {
                 latitude={occurrence.latitude}
                 longitude={occurrence.longitude}
             />
+            <OccurrencesStatus status={occurrence.status} />
         </ScrollView>
     );
 }

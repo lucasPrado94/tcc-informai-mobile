@@ -8,6 +8,7 @@ export interface Occurrence {
     longitude: number,
     obs: string,
     serviceId: number,
+    status: number,
     service: {
         serviceName: string
     },

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MapView, { MapEvent, Marker } from 'react-native-maps';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import markerIcon from '../../images/marker-icon.png';
 import * as Location from 'expo-location';
 
@@ -27,7 +27,7 @@ export function SelectPositionMap({ position, handleSelectMapPosition }: Props) 
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
-                console.log('Você precisa liberar a localização do seu aparelho');
+                Alert.alert('Atenção', 'Esse aplicativo necessita da permissão de acesso à localização do aparelho. Por favor, libere a permissão nas configurações do dispositivo.');
                 return;
             }
             let location = await Location.getCurrentPositionAsync({});
