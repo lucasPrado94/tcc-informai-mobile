@@ -9,7 +9,7 @@ interface OccurrenceInfoProps {
     service: string,
     name: string,
     createdAt: string,
-    obs: string,
+    obs?: string,
     latitude: number,
     longitude: number
 }
@@ -24,9 +24,10 @@ export function OccurrenceInfo({ service, name, createdAt, obs, latitude, longit
     return (
         <View style={styles.container}>
             <Text style={styles.service}>{service}</Text>
-            <Text style={styles.info}>Aberto por: {(name) ? name : 'Anônimo'}</Text>
-            <Text style={styles.info}>Data: {date}</Text>
-            {obs && <Text style={styles.info}>Observações: {obs}</Text>}
+            <Text style={styles.info}>Aberto por: {(name) ? name : 'Anônimo'}.</Text>
+            <Text style={styles.info}>Data: {date}.</Text>
+            <Text style={styles.info}>Observações: {(obs) ? obs : 'sem observações'}.</Text>
+            <Text style={styles.info}>{(obs) ? `Observações: ${obs}` : ''}</Text>
 
             <View style={styles.mapContainer}>
                 <MapView
