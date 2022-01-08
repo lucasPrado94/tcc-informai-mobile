@@ -27,7 +27,6 @@ export function OccurrenceInfo({ service, name, createdAt, obs, latitude, longit
             <Text style={styles.info}>Aberto por: {(name) ? name : 'Anônimo'}.</Text>
             <Text style={styles.info}>Data: {date}.</Text>
             <Text style={styles.info}>Observações: {(obs) ? obs : 'sem observações'}.</Text>
-            <Text style={styles.info}>{(obs) ? `Observações: ${obs}` : ''}</Text>
 
             <View style={styles.mapContainer}>
                 <MapView
