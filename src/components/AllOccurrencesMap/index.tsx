@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Alert } from 'react-native';
-import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { View, Alert } from 'react-native';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { styles } from './styles';
-import markerIcon from '../../images/marker-icon.png';
 import { Coordinate } from '../../interfaces/coordinate';
 import { Occurrence } from '../../interfaces/occurrence';
 import { OccurrenceDetailsScreenProp } from '../../routes';
+import { MapMarker } from '../MapMarker';
 
 type AllOccurrencesMapProps = {
     occurrences: Occurrence[];
@@ -56,24 +56,15 @@ export function AllOccurrencesMap({ occurrences }: AllOccurrencesMapProps) {
                     >
                         {occurrences.map(occurrence => {
                             return (
-                                <Marker
+                                <MapMarker
                                     key={occurrence.id}
-                                    icon={markerIcon}
-                                    calloutAnchor={{
-                                        x: 2.7,
-                                        y: 0.8,
-                                    }}
-                                    coordinate={{
-                                        latitude: occurrence.latitude,
-                                        longitude: occurrence.longitude,
-                                    }}
-                                >
-                                    <Callout tooltip onPress={() => handleNavigateToOccurrenceDetails(occurrence.id as any)}>
-                                        <View style={styles.calloutContainer}>
-                                            <Text style={styles.calloutText}>{occurrence.service.serviceName}</Text>
-                                        </View>
-                                    </Callout>
-                                </Marker>
+                                    latitude={occurrence.latitude}
+                                    longitude={occurrence.longitude}
+                                    calloutAnchor={true}
+                                    handleNavigateToOccurrenceDetails={handleNavigateToOccurrenceDetails}
+                                    id={occurrence.id}
+                                    serviceName={occurrence.service.serviceName}
+                                />
                             );
                         })}
                     </MapView>

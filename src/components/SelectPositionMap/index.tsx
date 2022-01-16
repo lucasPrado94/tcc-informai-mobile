@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import MapView, { MapEvent, Marker } from 'react-native-maps';
+import MapView, { MapEvent } from 'react-native-maps';
 import { View, Alert } from 'react-native';
-import markerIcon from '../../images/marker-icon.png';
 import * as Location from 'expo-location';
 
 import { styles } from './styles';
 import { Coordinate } from "../../interfaces/coordinate";
+import { MapMarker } from "../MapMarker";
 
 
 type Props = {
@@ -53,9 +53,9 @@ export function SelectPositionMap({ position, handleSelectMapPosition }: Props) 
                         style={styles.mapStyle}
                     >
                         {position.latitude !== 0 && (
-                            <Marker
-                                icon={markerIcon}
-                                coordinate={{ latitude: position.latitude, longitude: position.longitude }}
+                            <MapMarker
+                                latitude={position.latitude}
+                                longitude={position.longitude}
                             />
                         )}
                     </MapView>

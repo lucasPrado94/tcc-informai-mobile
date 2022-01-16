@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Linking } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView from 'react-native-maps';
 import { formataDataBR } from '../../helpers/formataData';
 import { styles } from './styles';
-import markerIcon from '../../images/marker-icon.png';
+import { MapMarker } from '../MapMarker';
 
 interface OccurrenceInfoProps {
     service: string,
@@ -42,12 +42,9 @@ export function OccurrenceInfo({ service, name, createdAt, obs, latitude, longit
                     rotateEnabled={false}
                     style={styles.mapStyle}
                 >
-                    <Marker
-                        icon={markerIcon}
-                        coordinate={{
-                            latitude: latitude,
-                            longitude: longitude,
-                        }}
+                    <MapMarker
+                        latitude={latitude}
+                        longitude={longitude}
                     />
                 </MapView>
                 <TouchableOpacity onPress={handleOpenGoogleMapRoutes} style={styles.routesContainer}>
