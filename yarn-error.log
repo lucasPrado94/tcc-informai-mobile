@@ -1,30 +1,30 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\User\.yarn\releases\yarn-1.23.0-20210103.1434.cjs add @types/expo-image-picker
+  C:\Program Files\nodejs\node.exe C:\Users\User\.yarn\releases\yarn-1.23.0-20210103.1434.cjs add @types/babel-plugin-transform-inline-environment-variables -D
 
 PATH: 
-  C:\Program Files\Zulu\zulu-17\bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\wamp64\bin\php\php8.0.3;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;%LOCALAPPDATA%\Android\Sdk\platform-tools;C:\MinGW\bin;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\User\AppData\Roaming\npm;C:\Users\User\AppData\Local\Yarn\bin;C:\Users\User\AppData\Local\nvs\default;C:\Users\User\AppData\Local\nvs\;C:\Program Files\heroku\bin;C:\wamp64\bin\php\php7.4.9;C:\Users\User\AppData\Local\ComposerSetup\bin;C:\Users\User\AppData\Roaming\Composer\vendor\bin
+  C:\Program Files\Zulu\zulu-17\bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\wamp64\bin\php\php8.0.3;C:\Program Files (x86)\Yarn\bin\;%LOCALAPPDATA%\Android\Sdk\platform-tools;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\MinGW\bin;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\User\AppData\Local\Yarn\bin;C:\Users\User\AppData\Local\nvs\default;C:\Users\User\AppData\Local\nvs\;C:\Program Files\heroku\bin;C:\wamp64\bin\php\php7.4.9;C:\Users\User\AppData\Local\ComposerSetup\bin;C:\Users\User\AppData\Roaming\Composer\vendor\bin;C:\Users\User\AppData\Roaming\npm
 
 Yarn version: 
   1.23.0-20210103.1434
 
 Node version: 
-  14.16.1
+  16.13.2
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fexpo-image-picker: Not found
+  Error: https://registry.yarnpkg.com/@types%2fbabel-plugin-transform-inline-environment-variables: Not found
       at Request.params.callback [as _callback] (C:\Users\User\.yarn\releases\yarn-1.23.0-20210103.1434.cjs:78518:18)
       at Request.self.callback (C:\Users\User\.yarn\releases\yarn-1.23.0-20210103.1434.cjs:135160:22)
-      at Request.emit (events.js:315:20)
+      at Request.emit (node:events:390:28)
       at Request.<anonymous> (C:\Users\User\.yarn\releases\yarn-1.23.0-20210103.1434.cjs:136132:10)
-      at Request.emit (events.js:315:20)
+      at Request.emit (node:events:390:28)
       at IncomingMessage.<anonymous> (C:\Users\User\.yarn\releases\yarn-1.23.0-20210103.1434.cjs:136054:12)
-      at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (internal/streams/readable.js:1327:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+      at Object.onceWrapper (node:events:509:28)
+      at IncomingMessage.emit (node:events:402:35)
+      at endReadableNT (node:internal/streams/readable:1343:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
 npm manifest: 
   {
@@ -44,7 +44,7 @@ npm manifest:
       "axios": "^0.24.0",
       "expo": "~42.0.1",
       "expo-font": "~9.2.1",
-      "expo-image-picker": "^12.0.1",
+      "expo-image-picker": "~10.2.2",
       "expo-location": "~12.1.2",
       "expo-status-bar": "~1.0.4",
       "expo-updates": "~0.8.2",
@@ -62,6 +62,7 @@ npm manifest:
       "@babel/core": "^7.9.0",
       "@types/react": "~16.9.35",
       "@types/react-native": "~0.63.2",
+      "babel-plugin-transform-inline-environment-variables": "^0.4.3",
       "typescript": "~4.0.0"
     },
     "private": true
@@ -1274,28 +1275,6 @@ Lockfile:
       xcode "^3.0.1"
       xml2js "^0.4.23"
   
-  "@expo/config-plugins@^4.0.2":
-    version "4.0.14"
-    resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-4.0.14.tgz#39353be207fe499f4e28703a6cbe7a577bc1b3bb"
-    integrity sha512-3UMo9STaIAQRAvtlXXIX83mrxWAh0prQYgVG+n2JRBwI9CWiRdj35W+jyXkTChtPYXGvW1JQF2xatjB8ituSvg==
-    dependencies:
-      "@expo/config-types" "^43.0.1"
-      "@expo/json-file" "8.2.34"
-      "@expo/plist" "0.0.16"
-      "@expo/sdk-runtime-versions" "^1.0.0"
-      "@react-native/normalize-color" "^2.0.0"
-      chalk "^4.1.2"
-      debug "^4.3.1"
-      find-up "~5.0.0"
-      fs-extra "9.0.0"
-      getenv "^1.0.0"
-      glob "7.1.6"
-      resolve-from "^5.0.0"
-      semver "^7.3.5"
-      slash "^3.0.0"
-      xcode "^3.0.1"
-      xml2js "0.4.23"
-  
   "@expo/config-types@^41.0.0":
     version "41.0.0"
     resolved "https://registry.npmjs.org/@expo/config-types/-/config-types-41.0.0.tgz"
@@ -1305,11 +1284,6 @@ Lockfile:
     version "42.0.0"
     resolved "https://registry.npmjs.org/@expo/config-types/-/config-types-42.0.0.tgz"
     integrity sha512-Rj02OMZke2MrGa/1Y/EScmR7VuWbDEHPJyvfFyyLbadUt+Yv6isCdeFzDt71I7gJlPR9T4fzixeYLrtXXOTq0w==
-  
-  "@expo/config-types@^43.0.1":
-    version "43.0.1"
-    resolved "https://registry.yarnpkg.com/@expo/config-types/-/config-types-43.0.1.tgz#3e047dccb371741a540980eaff26fb0c95039c30"
-    integrity sha512-EtllpCGDdB/UdwAIs5YXJwBLpbFQNdlLLrxIvoILA9cXrpQMWkeDCT9lQPJzFRMFcLUaMuGvkzX2tR4tx5EQFQ==
   
   "@expo/config@5.0.5":
     version "5.0.5"
@@ -1396,15 +1370,6 @@ Lockfile:
       json5 "^1.0.1"
       write-file-atomic "^2.3.0"
   
-  "@expo/json-file@8.2.34":
-    version "8.2.34"
-    resolved "https://registry.yarnpkg.com/@expo/json-file/-/json-file-8.2.34.tgz#2f24e90a677195f7a81e167115460eb2902c3130"
-    integrity sha512-ZxtBodAZGxdLtgKzmsC+8ViUxt1mhFW642Clu2OuG3f6PAyAFsU/SqEGag9wKFaD3x3Wt8VhL+3y5fMJmUFgPw==
-    dependencies:
-      "@babel/code-frame" "~7.10.4"
-      json5 "^1.0.1"
-      write-file-atomic "^2.3.0"
-  
   "@expo/metro-config@^0.1.70":
     version "0.1.80"
     resolved "https://registry.npmjs.org/@expo/metro-config/-/metro-config-0.1.80.tgz"
@@ -1442,20 +1407,6 @@ Lockfile:
       "@xmldom/xmldom" "~0.7.0"
       base64-js "^1.2.3"
       xmlbuilder "^14.0.0"
-  
-  "@expo/plist@0.0.16":
-    version "0.0.16"
-    resolved "https://registry.yarnpkg.com/@expo/plist/-/plist-0.0.16.tgz#c7d294a774196cfa1d8caf89a75ba923f5d1d53c"
-    integrity sha512-yQMt2CTm2VNLiHv2/EqHYrHvfflI2mFJd+DZIQQy569hvpZle0CxMPGH1p2KatbrO8htxJNvwrlR/4TIwhQJ5w==
-    dependencies:
-      "@xmldom/xmldom" "~0.7.0"
-      base64-js "^1.2.3"
-      xmlbuilder "^14.0.0"
-  
-  "@expo/sdk-runtime-versions@^1.0.0":
-    version "1.0.0"
-    resolved "https://registry.yarnpkg.com/@expo/sdk-runtime-versions/-/sdk-runtime-versions-1.0.0.tgz#d7ebd21b19f1c6b0395e50d78da4416941c57f7c"
-    integrity sha512-Doz2bfiPndXYFPMRwPyGa1k5QaKDVpY806UJj570epIiMzWaYyCtobasyfC++qfIXVb5Ocy7r3tP9d62hAQ7IQ==
   
   "@expo/vector-icons@^12.0.4":
     version "12.0.5"
@@ -1712,11 +1663,6 @@ Lockfile:
     version "1.8.1"
     resolved "https://registry.npmjs.org/@react-native-community/picker/-/picker-1.8.1.tgz"
     integrity sha512-Sj9DzX1CSnmYiuEQ5fQhExoo4XjSKoZkqLPAAybycq6RHtCuWppf+eJXRMCOJki25BlKSSt+qVqg0fIe//ujNQ==
-  
-  "@react-native/normalize-color@^2.0.0":
-    version "2.0.0"
-    resolved "https://registry.yarnpkg.com/@react-native/normalize-color/-/normalize-color-2.0.0.tgz#da955909432474a9a0fe1cbffc66576a0447f567"
-    integrity sha512-Wip/xsc5lw8vsBlmY2MO/gFLp3MvuZ2baBZjDeTjjndMgM0h5sxz7AZR62RDPGgstp8Np7JzjvVqVT7tpFZqsw==
   
   "@react-navigation/core@^6.0.1":
     version "6.0.1"
@@ -2147,6 +2093,11 @@ Lockfile:
     version "7.0.0-beta.0"
     resolved "https://registry.npmjs.org/babel-plugin-syntax-trailing-function-commas/-/babel-plugin-syntax-trailing-function-commas-7.0.0-beta.0.tgz"
     integrity sha512-Xj9XuRuz3nTSbaTXWv3itLOcxyF4oPD8douBBmj7U9BBC6nEBYfyOJYQMf/8PJAFotC62UY5dFfIGEPr7WswzQ==
+  
+  babel-plugin-transform-inline-environment-variables@^0.4.3:
+    version "0.4.3"
+    resolved "https://registry.yarnpkg.com/babel-plugin-transform-inline-environment-variables/-/babel-plugin-transform-inline-environment-variables-0.4.3.tgz#a3b09883353be8b5e2336e3ff1ef8a5d93f9c489"
+    integrity sha1-o7CYgzU76LXiM24/8e+KXZP5xIk=
   
   babel-preset-expo@~8.4.0:
     version "8.4.0"
@@ -3000,12 +2951,13 @@ Lockfile:
       expo-modules-core "~0.2.0"
       fontfaceobserver "^2.1.0"
   
-  expo-image-picker@^12.0.1:
-    version "12.0.1"
-    resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-12.0.1.tgz#2d46648b82422124f53a0aa6c186c4035ad31e8d"
-    integrity sha512-0utJK87zQH9jeOKlK51x/AXg43msef8qY+oib7TR12jVa6uuPmO8TcMgzr1UZ7DIsxlkMRId/cvBWzMu2BnJcg==
+  expo-image-picker@~10.2.2:
+    version "10.2.3"
+    resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-10.2.3.tgz#204c83ba0731f2ccdbc42e13f9bf6e37be21c354"
+    integrity sha512-8VXLYjclXoQJHbdNLI21rdbnxFisBpZ6TgIifHf9kZ/momFBegUNqEKCjosvxVGVM8f7qaQxJV/znNtW0rDM/w==
     dependencies:
-      "@expo/config-plugins" "^4.0.2"
+      "@expo/config-plugins" "^3.0.0"
+      expo-modules-core "~0.2.0"
       uuid "7.0.2"
   
   expo-keep-awake@~9.2.0:
@@ -6170,7 +6122,7 @@ Lockfile:
       simple-plist "^1.1.0"
       uuid "^7.0.3"
   
-  xml2js@0.4.23, xml2js@^0.4.23:
+  xml2js@^0.4.23:
     version "0.4.23"
     resolved "https://registry.npmjs.org/xml2js/-/xml2js-0.4.23.tgz"
     integrity sha512-ySPiMjM0+pLDftHgXY4By0uswI3SPKLDw/i3UXbnO8M/p28zqexCUoPmQFrYD+/1BzhGJSs2i1ERWKJAtiLrug==

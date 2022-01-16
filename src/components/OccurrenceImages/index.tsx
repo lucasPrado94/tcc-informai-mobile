@@ -2,6 +2,7 @@ import React from 'react';
 
 import { View, ScrollView, Text, Image } from 'react-native';
 import { Image as ImageInterface } from '../../interfaces/image';
+import { BASE_URL } from '../../utils/requests';
 import { styles } from './styles';
 
 interface OccurrenceImagesProps {
@@ -17,7 +18,7 @@ export function OccurrenceImages({ images }: OccurrenceImagesProps) {
                         <Image
                             key={image.id}
                             style={styles.image}
-                            source={{ uri: `http://192.168.1.104:4000/uploads/${image.fileName}` }}
+                            source={{ uri: `${BASE_URL}/uploads/${image.fileName}` }}
                         />
                     )
                 })}
