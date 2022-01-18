@@ -18,7 +18,6 @@ export function OccurrencesMap() {
                 setOccurrences(response.data);
             });
         })();
-
     });
 
     return (

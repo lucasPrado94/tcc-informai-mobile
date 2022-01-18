@@ -18,7 +18,7 @@ export function OccurrenceImages({ images }: OccurrenceImagesProps) {
                         <Image
                             key={image.id}
                             style={styles.image}
-                            source={{ uri: `${BASE_URL}/uploads/${image.fileName}` }}
+                            source={{ uri: `https://informai.s3.sa-east-1.amazonaws.com/${image.fileName}` }}
                         />
                     )
                 })}
