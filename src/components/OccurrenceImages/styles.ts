@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
 
     image: {
         width: Dimensions.get('window').width,
-        height: 240,
+        height: 360,
         resizeMode: 'cover',
       },
 });
