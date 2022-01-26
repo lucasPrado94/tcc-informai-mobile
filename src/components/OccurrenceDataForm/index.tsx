@@ -13,6 +13,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { styles } from './styles';
 import api from '../../services/api';
 import { OccurrencesMapScreenProp } from '../../routes';
+import { Loader } from '../Loader';
 
 interface OccurrenceDataFormParams {
     position: Coordinate,
@@ -27,6 +28,7 @@ export function OccurrenceDataForm({ position }: OccurrenceDataFormParams) {
     const navigation = useNavigation<OccurrencesMapScreenProp>();
     const [images, setImages] = useState<string[]>([]);
     const [extImage, setExtImage] = useState<string[]>([]);
+    const [isWaiting, setIsWaiting] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -60,10 +62,14 @@ export function OccurrenceDataForm({ position }: OccurrenceDataFormParams) {
                 } as any)
             })
 
-            const result = await api.post('occurrences/create', data);
+            setIsWaiting(true);
+            const result = await api.post('occurrences/create', data)
+            setIsWaiting(false);
 
-            if (result.status == 201)
+            if (result.status == 201) {
+                Alert.alert('Sucesso', 'Ocorrência cadastrada com sucesso!')
                 navigation.navigate('OccurrencesMap');
+            }
             else
                 Alert.alert('Erro', 'Não foi possível salvar a ocorrência, tente novamente.')
         }
@@ -104,76 +110,86 @@ export function OccurrenceDataForm({ position }: OccurrenceDataFormParams) {
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.label}>Nome</Text>
-            <Text style={styles.labelSmall}>Quem está abrindo a ocorrência? Não obrigatório.</Text>
-            <TextInput
-                style={styles.input}
-                value={name}
-                onChangeText={setName}
-            />
+        <>
+            {isWaiting ?
+                <Loader isLoading={isWaiting} />
+                :
+                <View style={styles.container}>
+                    <Text style={styles.label}>Nome</Text>
+                    <Text style={styles.labelSmall}>Quem está abrindo a ocorrência? Não obrigatório.</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={name}
+                        onChangeText={setName}
+                    />
 
-            <Text style={styles.label}>Servico público</Text>
-            <Text style={styles.labelSmall}>Selecione o serviço público que está acontecendo o problema.</Text>
-            <View style={styles.pickerContainer}>
-                <Picker
-                    selectedValue={String(serviceId)}
-                    onValueChange={(serviceValue) => setServiceId(+serviceValue)}
-                >
-                    <Picker.Item label="Escolha uma categoria" value="0" />
+                    <Text style={styles.label}>Servico público</Text>
+                    <Text style={styles.labelSmall}>Selecione o serviço público que está acontecendo o problema.</Text>
+                    <View style={styles.pickerContainer}>
+                        <Picker
+                            selectedValue={String(serviceId)}
+                            onValueChange={(serviceValue) => setServiceId(+serviceValue)}
+                        >
+                            <Picker.Item label="Escolha uma categoria" value="0" />
 
-                    {
-                        servicesDB.map(serviceDB => {
-                            return (
-                                <Picker.Item
-                                    key={serviceDB.id}
-                                    label={serviceDB.serviceName}
-                                    value={String(serviceDB.id)}
-                                />
-                            )
-                        })
-                    }
+                            {
+                                servicesDB.map(serviceDB => {
+                                    return (
+                                        <Picker.Item
+                                            key={serviceDB.id}
+                                            label={serviceDB.serviceName}
+                                            value={String(serviceDB.id)}
+                                        />
+                                    )
+                                })
+                            }
 
-                </Picker>
-            </View>
+                        </Picker>
+                    </View>
 
-            <Text style={styles.label}>Fotos</Text>
-            <Text style={styles.labelSmall}>Adicione fotos para
-                que a administração possa saber a situação em que o problema se encontra.
-            </Text>
-            <View style={styles.uploadedImagesContainer}>
-                <ScrollView horizontal>
-                    {images.map((image, index) => {
-                        return (
-                            <View
-                                key={index}
-                                style={styles.uploadedImageMenu}
-                            >
-                                <Image
-                                    source={{ uri: image }}
-                                    style={styles.uploadedImage}
-                                />
-                                <Feather name="x" size={30} color="red" style={styles.excludeImage} onPress={() => handleExcludeImage(index)} />
-                            </View>
-                        )
-                    })}
-                </ScrollView>
-            </View>
-            <TouchableOpacity style={styles.imagesInput} onPress={handleSelectImages}>
-                <Feather name="plus" size={24} color="#009E86" />
-            </TouchableOpacity>
+                    <Text style={styles.label}>Fotos</Text>
+                    <Text style={styles.labelSmall}>Adicione fotos para
+                        que a administração possa saber a situação em que o problema se encontra.
+                    </Text>
+                    <View style={styles.uploadedImagesContainer}>
+                        <ScrollView horizontal>
+                            {images.map((image, index) => {
+                                return (
+                                    <View
+                                        key={index}
+                                        style={styles.uploadedImageMenu}
+                                    >
+                                        <Image
+                                            source={{ uri: image }}
+                                            style={styles.uploadedImage}
+                                        />
+                                        <Feather name="x" size={30} color="red" style={styles.excludeImage} onPress={() => handleExcludeImage(index)} />
+                                    </View>
+                                )
+                            })}
+                        </ScrollView>
+                    </View>
+                    <TouchableOpacity style={styles.imagesInput} onPress={handleSelectImages}>
+                        <Feather name="plus" size={24} color="#009E86" />
+                    </TouchableOpacity>
 
-            <Text style={styles.label}>Observações</Text>
-            <Text style={styles.labelSmall}>Deseja adicionar mais alguma informação sobre o problema?</Text>
-            <TextInput
-                style={[styles.input, { height: 110 }]}
-                multiline
-                value={obs}
-                onChangeText={setObs}
-            />
-            <RectButton style={styles.nextButton} onPress={handleCreateOccurrence}>
-                <Text style={styles.nextButtonText}>Concluir</Text>
-            </RectButton>
-        </View>
+                    <Text style={styles.label}>Observações</Text>
+                    <Text style={styles.labelSmall}>Deseja adicionar mais alguma informação sobre o problema?</Text>
+                    <TextInput
+                        style={[styles.input, { height: 110 }]}
+                        multiline
+                        value={obs}
+                        onChangeText={setObs}
+                    />
+                    <RectButton style={styles.nextButton} onPress={handleCreateOccurrence}>
+                        {!isWaiting ?
+                            <Text style={styles.nextButtonText}>Concluir</Text> :
+                            <></>
+                        }
+
+                    </RectButton>
+                </View >
+            }
+        </>
     );
 }

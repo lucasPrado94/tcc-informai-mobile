@@ -13,7 +13,7 @@ import { Coordinate } from "./interfaces/coordinate";
 
 export type RootStackParamList = {
     OccurrencesMap: undefined;
-    OccurrenceDetails: { id: number};
+    OccurrenceDetails: { id: number };
     SelectMapPosition: undefined;
     OccurrenceData: { position: Coordinate };
 };
@@ -40,7 +40,7 @@ export function Routes() {
                     component={OccurrenceDetails}
                     options={{
                         headerShown: true,
-                        header: () => <Header title="Detalhes da ocorrência" showCancel={false}/>
+                        header: () => <Header title="Detalhes da ocorrência" showCancel={false} />
                     }}
                 />
 
