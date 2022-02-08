@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
     },
 
     nextButton: {
-        backgroundColor: '#009E86',
+        backgroundColor: '#59CF3B',
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
